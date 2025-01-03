@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarryCo - Smart Trucking Management Solutions</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2E5BFF;
+            --secondary: #FF9500;
+            --dark: #1a1a1a;
+            --light: #f8f9fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--dark);
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 800;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+                        url('/api/placeholder/1920/1080') center/cover;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .truck-animation {
+            width: 100%;
+            max-width: 800px;
+            margin: 2rem auto;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 5rem 2rem;
+            background: var(--light);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            color: var(--primary);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: var(--primary);
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Button Styles */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            border: 2px solid var(--primary);
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: white;
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+            color: var(--dark);
+            border: 2px solid var(--secondary);
+        }
+
+        .btn-secondary:hover {
+            background: transparent;
+            color: var(--secondary);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .truck-animation {
+                max-width: 100%;
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <a href="#" class="logo">
+            Carry<span>Co</span>
+        </a>
+        <div class="hero-content">
+            <h1>Revolutionizing Jamaican Trucking</h1>
+            <p>Smart order management solution for modern trucking companies. From port to destination, we've got you covered.</p>
+            <div class="truck-animation">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200">
+                    <path id="truckPath" d="M50,100 C200,100 300,50 400,100 S600,150 750,100" stroke="#e0e0e0" stroke-width="2" fill="none" stroke-dasharray="5,5"/>
+                    <circle cx="50" cy="100" r="8" fill="#FF9500"/>
+                    <circle cx="750" cy="100" r="8" fill="#FF9500"/>
+                    <g id="truck" fill="#2E5BFF">
+                        <g transform="translate(-25, -25)">
+                            <rect x="0" y="0" width="40" height="25" rx="3"/>
+                            <rect x="40" y="8" width="10" height="17"/>
+                            <circle cx="10" cy="25" r="5"/>
+                            <circle cx="35" cy="25" r="5"/>
+                        </g>
+                    </g>
+                    <animateMotion 
+                        href="#truck"
+                        dur="4s"
+                        repeatCount="indefinite"
+                        path="M50,100 C200,100 300,50 400,100 S600,150 750,100"
+                        rotate="auto"/>
+                </svg>
+            </div>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn btn-primary">Get Started</a>
+                <a href="#demo" class="btn btn-secondary">Request Demo</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <h2 class="section-title">Why Choose CarryCo?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <i class="fas fa-ship feature-icon"></i>
+                <h3>Port Integration</h3>
+                <p>Seamless coordination with major Jamaican ports for efficient pickup scheduling and real-time container tracking.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-route feature-icon"></i>
+                <h3>Smart Routing</h3>
+                <p>Optimize delivery routes across Jamaica with our intelligent routing system, saving time and fuel costs.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-mobile-alt feature-icon"></i>
+                <h3>Mobile Access</h3>
+                <p>Manage your fleet on the go with our mobile-friendly platform, designed for Jamaican roads and conditions.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-chart-line feature-icon"></i>
+                <h3>Real-time Analytics</h3>
+                <p>Make data-driven decisions with comprehensive analytics and reporting tools.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-users feature-icon"></i>
+                <h3>Customer Portal</h3>
+                <p>Give your customers real-time visibility into their shipments with our user-friendly tracking portal.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-shield-alt feature-icon"></i>
+                <h3>Secure Platform</h3>
+                <p>Enterprise-grade security ensures your business data stays protected at all times.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="cta-content">
+            <h2>Ready to Transform Your Trucking Operations?</h2>
+            <p>Join leading Jamaican trucking companies already using CarryCo to streamline their operations.</p>
+            <a href="#contact" class="btn btn-secondary">Contact Us Today</a>
+        </div>
+    </section>
+
+    <section id="demo" class="features" style="background: white;">
+        <h2 class="section-title">See CarryCo in Action</h2>
+        <div class="features-grid" style="grid-template-columns: 1fr;">
+            <div class="feature-card" style="text-align: center;">
+                <i class="fas fa-laptop-code feature-icon"></i>
+                <h3>Request a Demo</h3>
+                <p>Experience how CarryCo can transform your trucking operations. Our team will walk you through the platform and answer any questions you have.</p>
+                <form id="demo-form" style="max-width: 400px; margin: 2rem auto; text-align: left;">
+                    <div style="margin-bottom: 1rem;">
+                        <label style="display: block; margin-bottom: 0.5rem;">Company Name</label>
+                        <input type="text" style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px;">
+                    </div>
+                    <div style="margin-bottom: 1rem;">
+                        <label style="display: block; margin-bottom: 0.5rem;">Email</label>
+                        <input type="email" style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px;">
+                    </div>
+                    <div style="margin-bottom: 1rem;">
+                        <label style="display: block; margin-bottom: 0.5rem;">Phone</label>
+                        <input type="tel" style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px;">
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Schedule Demo</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="features" style="background: var(--light);">
+        <h2 class="section-title">Get in Touch</h2>
+        <div class="features-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+            <div class="feature-card">
+                <i class="fas fa-envelope feature-icon"></i>
+                <h3>Email Us</h3>
+                <p>contact@carryco.com</p>
+                <p>support@carryco.com</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-phone feature-icon"></i>
+                <h3>Call Us</h3>
+                <p>Sales: +1 (876) 555-0123</p>
+                <p>Support: +1 (876) 555-0124</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add animation on scroll for feature cards
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.style.opacity = 0;
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
