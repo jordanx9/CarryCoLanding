@@ -41,8 +41,7 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-                        url('/api/placeholder/1920/1080') center/cover;
+            background: linear-gradient(135deg, #1a237e 0%, #1976d2 100%);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -99,19 +98,84 @@
         .feature-card {
             background: white;
             padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+            cursor: pointer;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 1;
+        }
+
+        .feature-card * {
+            position: relative;
+            z-index: 2;
         }
 
         .feature-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--primary);
+            box-shadow: 0 8px 30px rgba(46, 91, 255, 0.2);
+        }
+
+        .feature-card:hover::before {
+            opacity: 0.05;
         }
 
         .feature-icon {
             font-size: 2.5rem;
             color: var(--primary);
             margin-bottom: 1rem;
+            transition: all 0.4s ease;
+            display: inline-block;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.2) rotate(8deg);
+            color: var(--secondary);
+        }
+
+        .feature-card h3 {
+            transition: all 0.3s ease;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-card:hover h3 {
+            color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        .feature-card p {
+            transition: all 0.3s ease;
+            opacity: 0.8;
+        }
+
+        .feature-card:hover p {
+            opacity: 1;
+        }
+
+        /* Add pulsing animation to cards */
+        @keyframes cardPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
+        .feature-card.pulse {
+            animation: cardPulse 2s infinite;
         }
 
         /* CTA Section */
@@ -217,6 +281,11 @@
                 <p>Purpose-built for logistics companies across the Caribbean, with support for regional shipping routes and local compliance requirements.</p>
             </div>
             <div class="feature-card">
+                <i class="fas fa-file-invoice-dollar feature-icon"></i>
+                <h3>Accounting Integration</h3>
+                <p>Seamlessly sync with QuickBooks, Sage, and other accounting software to automate your financial workflows and reduce manual entry.</p>
+            </div>
+            <div class="feature-card">
                 <i class="fas fa-ship feature-icon"></i>
                 <h3>Container Tracking</h3>
                 <p>Real-time container tracking through API integrations, providing end-to-end visibility of your shipments across the supply chain.</p>
@@ -288,6 +357,12 @@
                 <p>Sales: +1 (876) 555-0123</p>
                 <p>Support: +1 (876) 555-0124</p>
             </div>
+            <div class="feature-card">
+                <i class="fas fa-map-marker-alt feature-icon"></i>
+                <h3>Visit Us</h3>
+                <p>123 Port Royal Street</p>
+                <p>Kingston, Jamaica</p>
+            </div>
         </div>
     </section>
 
@@ -316,12 +391,63 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.feature-card').forEach(card => {
+        // Enhanced feature card animations
+        document.querySelectorAll('.feature-card').forEach((card, index) => {
+            // Initial state for scroll reveal
             card.style.opacity = 0;
             card.style.transform = 'translateY(20px)';
             card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
             observer.observe(card);
+
+            // Add staggered entrance delay
+            card.style.transitionDelay = `${index * 0.1}s`;
+
+            // Add interaction effects
+            card.addEventListener('mouseenter', () => {
+                // Remove pulse animation if it exists
+                card.classList.remove('pulse');
+                
+                // Ripple effect on hover
+                const ripple = document.createElement('div');
+                ripple.style.position = 'absolute';
+                ripple.style.width = '20px';
+                ripple.style.height = '20px';
+                ripple.style.background = 'rgba(255, 255, 255, 0.7)';
+                ripple.style.borderRadius = '50%';
+                ripple.style.pointerEvents = 'none';
+                ripple.style.transform = 'translate(-50%, -50%)';
+                ripple.style.animation = 'ripple 1s linear infinite';
+                card.appendChild(ripple);
+
+                // Clean up ripple after animation
+                setTimeout(() => ripple.remove(), 1000);
+            });
+
+            // Add random pulse animation to cards
+            if (Math.random() > 0.7) {
+                setTimeout(() => {
+                    card.classList.add('pulse');
+                }, Math.random() * 5000);
+            }
         });
+
+        // Add ripple animation style
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                0% {
+                    width: 0;
+                    height: 0;
+                    opacity: 0.5;
+                }
+                100% {
+                    width: 500px;
+                    height: 500px;
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>
